@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+
+    <menuitem name="Product Catalog"
+              id="products-cat-menu-root"
+              web_icon="product_cat,static/description/icon.png"
+              sequence="0"/>
+
+<!--    <record id="access_products_quantity" model="ir.model.fields.access">-->
+<!--        <field name="name">Access to Quantity Field</field>-->
+<!--        <field name="model_id" ref="model_products_cat_myproduct"/>-->
+<!--        <field name="field_id" ref="field_products_cat_myproduct_quantity"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="False"/>-->
+<!--        <field name="perm_unlink" eval="False"/>-->
+<!--        <field name="groups" eval="[(4, ref('group_product_cat_inventory_manager'))]"/>-->
+<!--    </record>-->
+
+</odoo>

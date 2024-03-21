@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.products_cat_myproduct,access_products_cat_myproduct,product_cat.model_products_cat_myproduct,base.group_user,1,1,1,1
+access.products_cat_category,access_products_cat_category,product_cat.model_products_cat_category,base.group_user,1,1,1,1
+access.products_cat_buy_product,access_products_cat_buy_product,product_cat.model_products_cat_buy_product,base.group_user,1,1,1,1
+access.products_cat_customers,access_products_cat_customers,product_cat.model_products_cat_customers,base.group_user,1,1,1,1

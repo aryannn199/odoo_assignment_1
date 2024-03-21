@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_products_cat_buy_product_tree" model="ir.ui.view">
+        <field name="name">products_cat.buy_product.tree</field>
+        <field name="model">products_cat.buy_product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!--                <field name="image" widget="image" class="o_image_64_contain"/>-->
+                <field name="product_id"/>
+                <!--                <field name="price"/>-->
+                <!--                <field name="quantity"/>-->
+
+            </tree>
+        </field>
+    </record>
+
+
+    <!--    <record id="view_products_cat_product_search" model="ir.ui.view">-->
+    <!--        <field name="name">products_cat.buy_product.search</field>-->
+    <!--        <field name="model">products_cat.buy_product</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search>-->
+    <!--                <field name="name" filter_domain="['|' ,('name','ilike',self) ,('category_id','ilike',self)]"/>-->
+    <!--                &lt;!&ndash;                <field name="name"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash;                <field name="category_id"/>&ndash;&gt;-->
+    <!--                <filter name="filter_in_stock" string="In stock" domain="[('quantity', '>', 0)]"/>-->
+    <!--                &lt;!&ndash;                <group  expand="1" string="Size">&ndash;&gt;-->
+    <!--                &lt;!&ndash;                     <filter name="filter_s" string="S" domain="[('size', '=', 's')]"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash;                     <filter name="filter_l" string="L" domain="[('size', '=', 'l')]"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash;                     <filter name="filter_xl" string="XL" domain="[('size', '=', 'xl')]"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash;                     <filter name="filter_xxl" string="XXL" domain="[('size', '=', 'xxl')]"/>&ndash;&gt;-->
+
+    <!--                &lt;!&ndash;                </group>&ndash;&gt;-->
+    <!--                <separator string="Size"/>-->
+    <!--                &lt;!&ndash;                     <filter name="group_by_size" string="S" context="{'group_by':'size'}"/>&ndash;&gt;-->
+    <!--                <filter name="filter_l" string="L" domain="[('size', '=', 'l')]"/>-->
+    <!--                <filter name="filter_xl" string="XL" domain="[('size', '=', 'xl')]"/>-->
+    <!--                <filter name="filter_xxl" string="XXL" domain="[('size', '=', 'xxl')]"/>-->
+
+
+    <!--                &lt;!&ndash;                <group expand="0" name="Group By">&ndash;&gt;-->
+    <!--                &lt;!&ndash;                    <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash;                </group>&ndash;&gt;-->
+    <!--                <searchpanel>-->
+    <!--                    <field name="category_id" enable_counters="1"/>-->
+    <!--                </searchpanel>-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <record id="view_products_cat_buy_product_form" model="ir.ui.view">
+        <field name="name">products_cat.buy_product.form</field>
+        <field name="model">products_cat.buy_product</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget='statusbar' nolable="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="customer_address"/>
+
+                        </group>
+                        <group>
+                            <field name="customer_phone"/>
+                            <field name="customer_email"/>
+
+                        </group>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Order" name="order">
+                            <field name="all_detail">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="price"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <!--                        <page string="Schedule"></page>-->
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Top menu item -->
+    <record id="action_products_cat_buy_product" model="ir.actions.act_window">
+        <field name="name">Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products_cat.buy_product</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="">place a order</p>
+        </field>
+    </record>
+
+    <menuitem name="Orders"
+              id="buy-product-menu-root"
+              action="action_products_cat_buy_product"
+              parent="products-cat-menu-root"
+              sequence="0"/>
+</odoo>

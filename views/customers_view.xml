@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_products_cat_customer_tree" model="ir.ui.view">
+        <field name="name">products_cat.customers.tree</field>
+        <field name="model">products_cat.customers</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="name"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_products_cat_customer_search" model="ir.ui.view">
+        <field name="name">products_cat.customers.search</field>
+        <field name="model">products_cat.customers</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <searchpanel>
+<!--                    <field name="category_id" enable_counters="1"/>-->
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <record id="view_products_cat_customer_form" model="ir.ui.view">
+        <field name="name">products_cat.customers.form</field>
+        <field name="model">products_cat.customers</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                             <field name="name"/>
+                             <field name="address"/>
+
+                        </group>
+                        <group>
+                             <field name="phone"/>
+                             <field name="email"/>
+
+                        </group>
+                    </group>
+
+                    <!--                    <notebook>-->
+                    <!--                        <page string="About"></page>-->
+                    <!--                        <page string="Schedule"></page>-->
+                    <!--                    </notebook>-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Top menu item -->
+    <record id="action_products_cat_customers" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products_cat.customers</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="">Add new customer</p>
+        </field>
+    </record>
+
+    <menuitem name="Customers"
+              id="customer-menu-root"
+              action="action_products_cat_customers"
+              parent="buy-product-menu-root"
+              sequence="3"/>
+</odoo>

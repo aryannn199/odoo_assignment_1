@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_products_cat_tree" model="ir.ui.view">
+        <field name="name">products_cat.myproduct.tree</field>
+        <field name="model">products_cat.myproduct</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="image" widget="image" class="o_image_64_contain"/>
+                <field name="name"/>
+                <field name="price"/>
+                <field name="quantity"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_products_cat_product_search" model="ir.ui.view">
+        <field name="name">products_cat.myproduct.search</field>
+        <field name="model">products_cat.myproduct</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="['|' ,('name','ilike',self) ,('category_id','ilike',self)]"/>
+                <!--                <field name="name"/>-->
+                <!--                <field name="category_id"/>-->
+                <filter name="filter_in_stock" string="In stock" domain="[('quantity', '>', 0)]"/>
+                <!--                <group  expand="1" string="Size">-->
+                <!--                     <filter name="filter_s" string="S" domain="[('size', '=', 's')]"/>-->
+                <!--                     <filter name="filter_l" string="L" domain="[('size', '=', 'l')]"/>-->
+                <!--                     <filter name="filter_xl" string="XL" domain="[('size', '=', 'xl')]"/>-->
+                <!--                     <filter name="filter_xxl" string="XXL" domain="[('size', '=', 'xxl')]"/>-->
+
+                <!--                </group>-->
+                <separator string="Size"/>
+                <!--                     <filter name="group_by_size" string="S" context="{'group_by':'size'}"/>-->
+                <filter name="filter_l" string="L" domain="[('size', '=', 'l')]"/>
+                <filter name="filter_xl" string="XL" domain="[('size', '=', 'xl')]"/>
+                <filter name="filter_xxl" string="XXL" domain="[('size', '=', 'xxl')]"/>
+
+
+                <!--                <group expand="0" name="Group By">-->
+                <!--                    <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>-->
+                <!--                </group>-->
+                <searchpanel>
+                    <field name="category_id" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <record id="view_products_cat_product_form" model="ir.ui.view">
+        <field name="name">products_cat.myproduct.form</field>
+        <field name="model">products_cat.myproduct</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="price"/>
+                            <field name="readonly_quant" invisible="1"/>
+                            <field name="quantity" readonly="readonly_quant == False" />
+                            <field name="size"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" class="w-25"/>
+                            <field name="category_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+    <!-- Top menu item -->
+    <record id="action_products_cat_product" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products_cat.myproduct</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="">Add a Product</p>
+        </field>
+    </record>
+
+    <menuitem name="Products"
+              id="product-menu-root"
+              action="action_products_cat_product"
+              parent="products-cat-menu-root"
+              sequence="1"/>
+</odoo>
